@@ -1,13 +1,38 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.X509Certificates;
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+namespace Apidemoproject.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class Apicontroller : ControllerBase
+    {
+        public List<string> Lbeemployee = new List<string>()
+        {
+            "Priyanshu",
+            "Pawan",
+            "Prathmesh",
+            "Piyush",
+            "Lokesh",
+            "Shruti"
+        };
+        // Get method Use to Getting data
 
-  <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+        [HttpGet]
+        public List<string> GetLbeemployee()
+        {
+            return Lbeemployee;
+        }
 
-</Project>
+
+        // Now Getting data by id
+
+        [HttpGet("{id}")]
+        public string GetemployeeByindex(int id)
+        {
+            return Lbeemployee.ElementAt(id);
+
+        }
+    }
+}
